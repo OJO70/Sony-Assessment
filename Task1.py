@@ -50,7 +50,7 @@ class Employee(Observer):
         self.role = role
 
     def update(self, state, from_machine): # The update function which returns a report string with all the required perameters passed
-        print(f"Emplyee name: {self.name}, Role: {self.role}. Machine: {from_machine} has the STATE: {state}")
+        print(f"Employee name: {self.name}, Role: {self.role}. Machine: {from_machine} has the STATE: {state}")
 
 
 def main():
