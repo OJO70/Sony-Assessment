@@ -50,7 +50,7 @@ class Employee(Observer):
         self.role = role
 
     def update(self, state, from_machine): # The update function which returns a report string with all the required perameters passed
-        print(f"Employee name: {self.name}, Role: {self.role}. Machine: {from_machine} has the STATE: {state}")
+        print(f"Employee name: {self.name}\n Role: {self.role}\n Machine: {from_machine} has the STATE: {state.value}")
 
 
 def main():
@@ -61,9 +61,9 @@ def main():
 
     # Show initial random states
     print("=== Initial States (before observers attached) ===")
-    print(f"{machine1.name}: {machine1.state}")
-    print(f"{machine2.name}: {machine2.state}")
-    print(f"{machine3.name}: {machine3.state}")
+    print(f"{machine1.name}: {machine1.state.value}")
+    print(f"{machine2.name}: {machine2.state.value}")
+    print(f"{machine3.name}: {machine3.state.value}")
 
     # Create employees
     employee1 = Employee("Cole", "Manager")
