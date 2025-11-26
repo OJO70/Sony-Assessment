@@ -13,7 +13,7 @@ class Dashboard(Observer):
         self.websocket = None
 
     
-    async def update(self, state, from_machine):
+    def update(self, state, from_machine):
         data = {"machine": from_machine, "state": state.value}
         # Converting Dictionary to json
         message = json.dumps(data)
@@ -43,13 +43,13 @@ async def handler(websocket):
     
     # Random state change loop for each machine
     while True:
-        # Pick random machine from the list
+        # Picks random machine from the list
         random_machine = random.choice(machines)
         
-        # Pick random state
+        # Picks random state
         random_state = random.choice(list(MachineState))
         
-        # Change the state, this triggers dashboard.update()
+        # Changes the state, this triggers dashboard.update()
         random_machine.setState(random_state)
         
         # Waits 2-10 seconds before next change

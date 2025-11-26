@@ -45,7 +45,7 @@ class Observer:
         pass
 
 class Employee(Observer):
-    def __init__(self, name, role): # Defiining the Emplyee Class
+    def __init__(self, name, role): # Defiining the Employee Class
         super().__init__(name)
         self.role = role
 
