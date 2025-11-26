@@ -1,45 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Production Line Dashboard</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 10px 20px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-        }
-    </style>
-</head>
-<body>
-    <h1>Production Line Dashboard</h1>
-    <p>By Oliver Owens</p>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Machine Name</th>
-                <th>State</th>
-            </tr>
-        </thead>
-        <tbody id="machine-table-body">
-                <!-- Will be populated by the JS below, in socket.onmessage function -->
-        </tbody>
-    </table>
-
-    <script>
-        // JS to format the table
+    // JS to format the table
         const machines = ["Machine A", "Machine B", "Machine C"];
 
         const tableBody = document.getElementById("machine-table-body");
@@ -92,6 +51,3 @@
 
             stateCell.style.backgroundColor = stateColours[data.state];
         };
-    </script>
-</body>
-</html>
