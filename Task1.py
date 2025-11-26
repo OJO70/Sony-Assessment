@@ -1,9 +1,21 @@
+import random
+from enum import Enum
+
+class MachineState(Enum):
+    PRODUCING = "PRODUCING"
+    IDLE = "IDLE"
+    STARVED = "STARVED"
+
 class Subject:
     def __init__(self):
         self.state = None
         self._observers = []  # List to hold observer references
     
     def setState(self, state):
+        # To prevent invalid states from being used
+        if not isinstance(state, MachineState):
+            raise ValueError(f"Invalid state: {state}. Must be a MachineState.")
+
         # Setting the state, then notify observers
         self.state = state
         self.notifyAllObservers()
@@ -16,12 +28,14 @@ class Subject:
         for observer in self._observers:
             observer.update(self.state, self.name)
 
-
 class Machine(Subject):
     def __init__(self, name):
-        super().__init__()  # Call parent's __init__
+        super().__init__()
         self.name = name
+        self.state = random.choice(list(MachineState))  # Random initial state
 
+    def startProduction(self):
+        self.setState(MachineState.PRODUCING)
 
 class Observer:
     def __init__(self, name,):
@@ -40,25 +54,33 @@ class Employee(Observer):
 
 
 def main():
-
+    # Create machines (they start in random states)
     machine1 = Machine("Assembly Arm")
     machine2 = Machine("Packing Machine")
     machine3 = Machine("Welding Machine")
-    #Example machines
 
+    # Show initial random states
+    print("=== Initial States (before observers attached) ===")
+    print(f"{machine1.name}: {machine1.state}")
+    print(f"{machine2.name}: {machine2.state}")
+    print(f"{machine3.name}: {machine3.state}")
+
+    # Create employees
     employee1 = Employee("Cole", "Manager")
     employee2 = Employee("Reece", "Technician")
     employee3 = Employee("Levi", "Team Player")
-    #Example Employees
 
+    # Attach observers
     machine1.attach(employee1)
+    machine1.attach(employee2)
     machine2.attach(employee2)
     machine3.attach(employee3)
-    # Using the attach methid to assign employees to a machine
 
-    machine1.setState("PRODUCING")
-    machine2.setState("PRODUCING")
-    machine3.setState("PRODUCING")
+    # Start production - observers now get notified
+    print("\n=== Starting Production ===")
+    machine1.startProduction()
+    machine2.startProduction()
+    machine3.startProduction()
 
     return
 
